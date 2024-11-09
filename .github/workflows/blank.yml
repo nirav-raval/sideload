@@ -1,38 +1,54 @@
 name: Fetch IPA URL and Update JSON
 
 on:
-  workflow_dispatch:  # Allows for manual triggering
-  schedule:
-    - cron: '0 0 * * 0'  # Runs every Sunday at midnight UTC
+  workflow_dispatch:
 
 jobs:
   fetch-ipa:
     runs-on: ubuntu-latest
     steps:
-      - name: Get IPA URL
+      - name: Get IPA URL and File Size
         id: get_ipa_url
         run: |
+          # Fetch the latest IPA URL
           IPA_URL=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
           jq -r '.assets[] | select(.name | endswith(".ipa")) | .browser_download_url')
+          
+          # Extract version from URL (between "EeveeSpotify-" and ".ipa")
+          VERSION=$(echo "$IPA_URL" | sed -n 's/.*EeveeSpotify-\(.*\)\.ipa/\1/p')
+          
+          # Fetch file size (in bytes) from the asset information
+          SIZE=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
+          jq '.assets[] | select(.name | endswith(".ipa")) | .size')
+          
+          # Export as environment variables
           echo "ipa_url=$IPA_URL" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_ENV
+          echo "size=$SIZE" >> $GITHUB_ENV
 
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Verify IPA URL
+      - name: Verify Extracted Variables
         run: |
           echo "Fetched IPA URL: ${{ env.ipa_url }}"
+          echo "Extracted Version: ${{ env.version }}"
+          echo "File Size: ${{ env.size }} bytes"
 
       - name: Update sidestore.json
         run: |
           # Print before modification for debugging
-          cat sidestore.json  
-          # Update the downloadURL with the fetched IPA URL
-          jq --arg ipa_url "${{ env.ipa_url }}" '.apps[0].downloadURL = $ipa_url' sidestore.json > temp.json
+          cat sidestore.json
+          # Update downloadURL, version, and size fields
+          jq --arg ipa_url "${{ env.ipa_url }}" \
+             --arg version "${{ env.version }}" \
+             --argjson size "${{ env.size }}" \
+             '.apps[0].downloadURL = $ipa_url | .apps[0].version = $version | .apps[0].size = $size' \
+             sidestore.json > temp.json
           # Move the updated file back to sidestore.json
           mv temp.json sidestore.json
           # Print after modification to confirm the change
-          cat sidestore.json  
+          cat sidestore.json
 
       - name: Check for Changes and Commit if Needed
         run: |
@@ -44,6 +60,6 @@ jobs:
             git config --local user.email "niravraval34@gmail.com"
             git config --local user.name "Nirav-raval"
             git add sidestore.json
-            git commit -m "Update downloadURL with latest IPA file URL"
+            git commit -m "Update downloadURL, version, and size with latest IPA file information"
             git push
           fi
