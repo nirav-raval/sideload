@@ -12,7 +12,7 @@
       "version": "1.0.0",
       "versionDate": "2024-11-08",
       "versionDescription": "Description of the version.",
-      "downloadURL": "https://yourrepo.github.io/yourapp.ipa",
+      "downloadURL": "",
       "localizedDescription": "Short description of what the app does.",
       "iconURL": "https://yourrepo.github.io/appicon.png",
       "tintColor": "#hexcolor",
