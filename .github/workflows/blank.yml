@@ -13,12 +13,21 @@ jobs:
           IPA_URL=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
           jq -r '.assets[] | select(.name | endswith(".ipa")) | .browser_download_url')
           echo "ipa_url=$IPA_URL" >> $GITHUB_ENV
+          
+      - name: Debug IPA URL
+        run: echo "IPA_URL=$IPA_URL"
+        
       - name: Checkout Repo
         uses: actions/checkout@v2
+
       - name: Update sidestore.json
         run: |
           jq --arg ipa_url "$IPA_URL" '.apps[0].downloadURL = $ipa_url' sidestore.json > temp.json
           mv temp.json sidestore.json
+
+      - name: Verify JSON Update
+        run: cat sidestore.json
+
       - name: Commit Changes
         run: |
           git config --local user.email "niravraval34@gmail.com"
