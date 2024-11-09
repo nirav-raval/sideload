@@ -9,6 +9,6 @@ To enable automatic updates and easy access to this app, follow these steps:
 1. Open AltStore or Sidestore and go to the **Browse** tab.
 2. Tap **Sources** in the top-right corner.
 3. Tap the **+** button and add my source URL: `https://tinyurl.com/akaSpotify`
-4. Now, any "Spotify" app will appear in the **Browse** tab, where you can install and update that directly from within AltStore or Sidestore.
+4. Now, a "Spotify" app will appear in the **Browse** tab, where you can install and update that directly from within AltStore or Sidestore.
 
 This setup ensures you always have the latest version of [EeveeSpotify](https://github.com/whoeevee/EeveeSpotify) with minimal effort. Enjoy!
