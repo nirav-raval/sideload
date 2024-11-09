@@ -20,14 +20,18 @@ jobs:
           echo "Fetched IPA URL: ${{ env.ipa_url }}"
       - name: Update sidestore.json
         run: |
-          cat sidestore.json  # Print before modification for debugging
-          jq --arg ipa_url "${{ env.ipa_url }}" '.apps[0].downloadURL = $ipa_url' sidestore.json > temp.json
-          cat temp.json  # Print after modification to confirm the change
-          mv temp.json sidestore.json
+          # Print original sidestore.json for debugging
+          cat sideload/sidestore.json  
+          # Update the downloadURL with the fetched IPA URL
+          jq --arg ipa_url "${{ env.ipa_url }}" '.apps[0].downloadURL = $ipa_url' sideload/sidestore.json > temp.json
+          # Move the temp file back to sideload/sidestore.json to finalize changes
+          mv temp.json sideload/sidestore.json
+          # Print modified sidestore.json for confirmation
+          cat sideload/sidestore.json  
       - name: Commit Changes
         run: |
           git config --local user.email "niravraval34@gmail.com"
           git config --local user.name "Nirav-raval"
-          git add sidestore.json
+          git add sideload/sidestore.json
           git commit -m "Update downloadURL with latest IPA file URL"
           git push
