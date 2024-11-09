@@ -1,13 +1,13 @@
 {
   "name": "Spotify",
-  "identifier": "com.nirav-raval.sideload",
+  "identifier": "com.whoeevee.EeveeSpotify",
   "sourceURL": "https://raw.githubusercontent.com/nirav-raval/sideload/master/sidestore.json",
   "sourceIconURL": "https://raw.githubusercontent.com/nirav-raval/sideload/master/SpotIcon.png",
   "userinfo": {},
   "apps": [
     {
       "name": "Spotify",
-      "bundleIdentifier": "com.spotify.sideload",
+      "bundleIdentifier": "com.whoeevee.EeveeSpotify",
       "developerName": "whoeevee",
       "subtitle": "A tweak to get Spotify Premium for free, just like Spotilife",
       "version": "5.8-8.9.90",
@@ -33,7 +33,7 @@
           "size": 80248061
         }
       ],
-      "appID": "com.nirav-raval.sideload"
+      "appID": "com.whoeevee.EeveeSpotify"
     }
   ],
   "version": 2,
