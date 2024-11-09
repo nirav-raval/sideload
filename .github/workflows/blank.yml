@@ -17,11 +17,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Verify IPA URL
         run: |
-          echo "Fetched IPA URL: $IPA_URL"
+          echo "Fetched IPA URL: ${{ env.ipa_url }}"
       - name: Update sidestore.json
         run: |
           cat sidestore.json  # Print before modification for debugging
-          jq --arg ipa_url "$IPA_URL" '.apps[0].downloadURL = $ipa_url' sidestore.json > temp.json
+          jq --arg ipa_url "${{ env.ipa_url }}" '.apps[0].downloadURL = $ipa_url' sidestore.json > temp.json
           cat temp.json  # Print after modification to confirm the change
           mv temp.json sidestore.json
       - name: Commit Changes
