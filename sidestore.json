@@ -7,7 +7,7 @@
   "apps": [
     {
       "name": "Spotify",
-      "bundleIdentifier": "com.nirav-raval.sideload",
+      "bundleIdentifier": "com.spotify.sideload",
       "developerName": "whoeevee",
       "subtitle": "A tweak to get Spotify Premium for free, just like Spotilife",
       "version": "5.8-8.9.90",
