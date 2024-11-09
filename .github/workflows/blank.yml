@@ -13,11 +13,23 @@ jobs:
           IPA_URL=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
           jq -r '.assets[] | select(.name | endswith(".ipa")) | .browser_download_url')
           echo "ipa_url=$IPA_URL" >> $GITHUB_ENV
+          
       - name: Checkout Repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Ensure full repo checkout
+
+      - name: Debug Directory Structure
+        run: |
+          echo "Root directory contents:"
+          ls
+          echo "sideload directory contents:"
+          ls sideload || echo "sideload directory not found"
+
       - name: Verify IPA URL
         run: |
           echo "Fetched IPA URL: ${{ env.ipa_url }}"
+
       - name: Update sidestore.json
         run: |
           # Print original sidestore.json for debugging
@@ -28,6 +40,7 @@ jobs:
           mv temp.json sideload/sidestore.json
           # Print modified sidestore.json for confirmation
           cat sideload/sidestore.json  
+
       - name: Commit Changes
         run: |
           git config --local user.email "niravraval34@gmail.com"
