@@ -1,13 +1,13 @@
 {
   "name": "Spotify",
-  "identifier": "com.whoeevee.EeveeSpotify",
+  "identifier": "com.eevee.source",
   "sourceURL": "https://raw.githubusercontent.com/nirav-raval/sideload/master/sidestore.json",
-  "sourceIconURL": "https://raw.githubusercontent.com/nirav-raval/sideload/master/SpotIcon.png",
+  "sourceIconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0c/1f/61/0c1f6144-af80-f395-3204-1d14fd8b2be7/AppIcon-0-0-1x_U007emarketing-0-6-0-0-85-220.png/512x512bb.jpg",
   "userinfo": {},
   "apps": [
     {
       "name": "Spotify",
-      "bundleIdentifier": "com.whoeevee.EeveeSpotify",
+      "bundleIdentifier": "com.spotify.client",
       "developerName": "whoeevee",
       "subtitle": "A tweak to get Spotify Premium for free, just like Spotilife",
       "version": "5.8-8.9.90",
@@ -15,7 +15,7 @@
       "versionDescription": "",
       "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8/EeveeSpotify-5.8-8.9.90.ipa",
       "localizedDescription": "This app provides access to Spotify iOS app .ipa by fetching IPAs directly from Eevee Spotify. The primary purpose is to add a convenient resource tab in Sidestore, allowing for easy installation and automatic updates.",
-      "iconURL": "https://raw.githubusercontent.com/nirav-raval/sideload/master/SpotIcon.png",
+      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0c/1f/61/0c1f6144-af80-f395-3204-1d14fd8b2be7/AppIcon-0-0-1x_U007emarketing-0-6-0-0-85-220.png/512x512bb.jpg",
       "tintColor": "AFEEEE",
       "size": 81248061,
       "permissions": [],
