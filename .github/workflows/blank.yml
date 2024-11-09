@@ -1,0 +1,17 @@
+name: Fetch IPA URLs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch-ipa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get IPA URLs
+        run: |
+          curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases" | 
+          jq -r '.[] | .assets[] | select(.name | endswith(".ipa")) | .browser_download_url' > ipa_urls.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Display IPA URLs
+        run: cat ipa_urls.txt
