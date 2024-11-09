@@ -1,39 +1,36 @@
 {
-  "name": "IOS Spotify",
+  "name": "Spotify",
   "identifier": "com.nirav-raval.sideload",
   "sourceURL": "https://raw.githubusercontent.com/nirav-raval/sideload/master/sidestore.json",
   "sourceIconURL": "https://raw.githubusercontent.com/nirav-raval/sideload/master/SpotIcon.png",
   "userinfo": {},
   "apps": [
     {
-      "name": "3Speak.tv - Acela",
+      "name": "Spotify",
       "bundleIdentifier": "com.nirav-raval.sideload",
-      "developerName": "sagarkothari88",
-      "subtitle": "Tokenized Video Communities",
+      "developerName": "whoeevee",
+      "subtitle": "A tweak to get Spotify Premium for free, just like Spotilife",
       "version": "1.0.3",
-      "versionDate": "2022-12-08",
-      "versionDescription": "https://ecency.com/hive-181335/@sagarkothari88/3speak-development-update-from-sagarkothari88-7cd51a3b88448",
+      "versionDate": "2024-11-09",
+      "versionDescription": "",
       "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8/EeveeSpotify-5.8-8.9.90.ipa",
-      "localizedDescription": "The build which was also submitted to the Apple for TestFlight review",
-      "iconURL": "https://github.com/spknetwork/Android-App/releases/download/v1.0.3_48/AppIcon-512.png",
+      "localizedDescription": "This app provides access to Spotify iOS app .ipa by fetching IPAs directly from Eevee Spotify. The primary purpose is to add a convenient resource tab in Sidestore, allowing for easy installation and automatic updates.",
+      "iconURL": "https://raw.githubusercontent.com/nirav-raval/sideload/master/SpotIcon.png",
       "tintColor": "AFEEEE",
       "size": 857669,
       "permissions": [],
       "screenshotURLs": [
-        "https://github.com/spknetwork/Android-App/releases/download/v1.0.3_48/IMG_5651.PNG",
-        "https://github.com/spknetwork/Android-App/releases/download/v1.0.3_48/IMG_5652.PNG",
-        "https://github.com/spknetwork/Android-App/releases/download/v1.0.3_48/IMG_5653.PNG",
-        "https://github.com/spknetwork/Android-App/releases/download/v1.0.3_48/IMG_5654.PNG",
-        "https://github.com/spknetwork/Android-App/releases/download/v1.0.3_48/IMG_5655.PNG"
+        "https://raw.githubusercontent.com/nirav-raval/sideload/master/sp1.png",
+        "https://raw.githubusercontent.com/nirav-raval/sideload/master/sp2.png"
       ],
       "beta": false,
       "versions": [
         {
           "version": "1.0.3",
-          "date": "2022-12-08",
+          "date": "2024-12-09",
           "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8/EeveeSpotify-5.8-8.9.90.ipa",
-          "localizedDescription": "https://ecency.com/hive-181335/@sagarkothari88/3speak-development-update-from-sagarkothari88-7cd51a3b88448",
-          "size": 857669
+          "localizedDescription": "This is just a tweak to directly update spofity without downloading from EeveeSpotify repo.",
+          "size": 1
         }
       ],
       "appID": "com.nirav-raval.sideload"
