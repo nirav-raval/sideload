@@ -46,12 +46,19 @@ jobs:
         run: |
           # Print before modification for debugging
           cat sidestore.json
-          # Update downloadURL, version, size, and versionDate fields
+          # Update downloadURL, version, size, and versionDate fields in both `apps[0]` and `versions[0]`
           jq --arg ipa_url "${{ env.ipa_url }}" \
              --arg version "${{ env.version }}" \
              --argjson size "${{ env.size }}" \
              --arg version_date "${{ env.version_date }}" \
-             '.apps[0].downloadURL = $ipa_url | .apps[0].version = $version | .apps[0].size = $size | .apps[0].versionDate = $version_date' \
+             '.apps[0].downloadURL = $ipa_url | 
+              .apps[0].version = $version | 
+              .apps[0].size = $size | 
+              .apps[0].versionDate = $version_date |
+              .apps[0].versions[0].downloadURL = $ipa_url |
+              .apps[0].versions[0].version = $version |
+              .apps[0].versions[0].size = $size |
+              .apps[0].versions[0].date = $version_date' \
              sidestore.json > temp.json
           # Move the updated file back to sidestore.json
           mv temp.json sidestore.json
