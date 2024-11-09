@@ -1,0 +1,29 @@
+{
+  "name": "IOS Spotify",
+  "identifier": "com.nirav-raval.sidestore",
+  "sourceURL": "https://raw.githubusercontent.com/sideload//main/sidestore.json",
+  "sourceIconURL": "https://raw.githubusercontent.com/sideload/SpotIcon.png",
+  "userinfo": {},
+  "apps": [
+    {
+      "name": "IOSSpotify",
+      "bundleIdentifier": "com.nirav-raval.sidestore",
+      "developerName": "Nirav",
+      "version": "1.0.0",
+      "versionDate": "2024-11-08",
+      "versionDescription": "Description of the version.",
+      "downloadURL": "https://yourrepo.github.io/yourapp.ipa",
+      "localizedDescription": "Short description of what the app does.",
+      "iconURL": "https://yourrepo.github.io/appicon.png",
+      "tintColor": "#hexcolor",
+      "size": 12345678,
+      "screenshotURLs": [
+        "https://yourrepo.github.io/screenshot1.png",
+        "https://yourrepo.github.io/screenshot2.png"
+      ],
+      "subtitle": "Brief subtitle",
+      "absoluteVersion": "1.0.0",
+      "appID": "com.nirav-raval.sidestore"
+    }
+  ]
+}
