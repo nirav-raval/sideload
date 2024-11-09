@@ -26,11 +26,11 @@
       "beta": false,
       "versions": [
         {
-          "version": "1.0.3",
-          "date": "2024-12-09",
+          "version": "5.8-8.9.90",
+          "date": "2024-11-09",
           "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8/EeveeSpotify-5.8-8.9.90.ipa",
           "localizedDescription": "This is just a tweak to directly update spofity without downloading from EeveeSpotify repo.",
-          "size": 1
+          "size": 81248061
         }
       ],
       "appID": "com.nirav-raval.sideload"
