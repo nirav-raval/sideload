@@ -1,4 +1,4 @@
-name: Fetch IPA URLs and Update JSON
+name: Fetch IPA URL and Update JSON
 
 on:
   workflow_dispatch:
