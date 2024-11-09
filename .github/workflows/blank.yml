@@ -1,7 +1,9 @@
 name: Fetch IPA URL and Update JSON
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Allows for manual triggering
+  schedule:
+    - cron: '0 0 * * 0'  # Runs every Sunday at midnight UTC
 
 jobs:
   fetch-ipa:
