@@ -11,7 +11,7 @@
       "developerName": "whoeevee",
       "subtitle": "A tweak to get Spotify Premium for free, just like Spotilife",
       "version": "5.8-8.9.90",
-      "versionDate": "2024-11-09",
+      "versionDate": "2024-11-10",
       "versionDescription": "",
       "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8/EeveeSpotify-5.8-8.9.90.ipa",
       "localizedDescription": "This app provides access to Spotify iOS app .ipa by fetching IPAs directly from Eevee Spotify. The primary purpose is to add a convenient resource tab in Sidestore, allowing for easy installation and automatic updates.",
@@ -27,7 +27,7 @@
       "versions": [
         {
           "version": "5.8-8.9.90",
-          "date": "2024-11-09",
+          "date": "2024-11-10",
           "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8/EeveeSpotify-5.8-8.9.90.ipa",
           "localizedDescription": "This is just a tweak to directly update spofity without downloading from EeveeSpotify repo.",
           "size": 81248061
