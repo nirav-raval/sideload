@@ -9,49 +9,73 @@ jobs:
   fetch-ipa:
     runs-on: ubuntu-latest
     steps:
-      - name: Get First IPA URL, Version, and Size
+      - name: Get IPA URL, Version, and Size
         id: get_ipa_url
         run: |
-          # Fetch the first `.ipa` file's URL from the release assets
+          # Fetch the latest IPA URL
           IPA_URL=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
-          jq -r '.assets[] | select(.name | endswith(".ipa")) | .browser_download_url' | head -n 1)
-
-          if [ -z "$IPA_URL" ]; then
-            echo "Error: No IPA file URL found in the release assets."
-            exit 1
-          fi
-          echo "Fetched IPA URL: $IPA_URL"
-
-          # Extract version from the URL
-          VERSION=$(echo "$IPA_URL" | grep -oP 'EeveeSpotify-\K[^-]+(?=\.ipa)')
-
-          if [ -z "$VERSION" ]; then
-            echo "Error: Version could not be extracted from the IPA file URL."
-            exit 1
-          fi
-          echo "Extracted Version: $VERSION"
-
-          # Fetch the file size (in bytes) for the first `.ipa` file
+          jq -r '.assets[] | select(.name | endswith(".ipa")) | .browser_download_url'| head -n 1)
+          
+          # Extract version from URL (between "EeveeSpotify-" and ".ipa")
+          VERSION=$(echo "$IPA_URL" | sed -n 's/.*EeveeSpotify-\(.*\)\.ipa/\1/p'| head -n 1)
+          
+          # Fetch file size (in bytes) from the asset information
           SIZE=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
-          jq '.assets[] | select(.name | endswith(".ipa")) | .size' | head -n 1)
-
-          if [ -z "$SIZE" ]; then
-            echo "Error: File size not found for the IPA file."
-            exit 1
-          fi
+          jq '.assets[] | select(.name | endswith(".ipa")) | .size'| head -n 1)
+          
+          # Export as environment variables with proper quotation
+          echo "ipa_url=\"$IPA_URL\"" >> $GITHUB_ENV
+          echo "version=\"$VERSION\"" >> $GITHUB_ENV
+          echo "size=$SIZE" >> $GITHUB_ENV
+          
+          # Debugging output
+          echo "Fetched IPA URL: $IPA_URL"
+          echo "Extracted Version: $VERSION"
           echo "File Size: $SIZE bytes"
 
-          # Export variables
-          {
-            echo "ipa_url<<EOF"
-            echo "$IPA_URL"
-            echo "EOF"
-            echo "version=$VERSION"
-            echo "size=$SIZE"
-          } >> $GITHUB_ENV
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
       - name: Verify Extracted Variables
         run: |
+          # Verify extracted variables
           echo "IPA URL: ${{ env.ipa_url }}"
           echo "Version: ${{ env.version }}"
           echo "Size: ${{ env.size }} bytes"
+
+      - name: Update sidestore.json
+        run: |
+          # Print before modification for debugging
+          cat sidestore.json
+          
+          # Update downloadURL, version, and size fields in both `apps[0]` and `versions[0]`
+          jq --arg ipa_url "${{ env.ipa_url }}" \
+             --arg version "${{ env.version }}" \
+             --argjson size "${{ env.size }}" \
+             '.apps[0].downloadURL = $ipa_url | 
+              .apps[0].version = $version | 
+              .apps[0].size = $size |
+              .apps[0].versions[0].downloadURL = $ipa_url |
+              .apps[0].versions[0].version = $version |
+              .apps[0].versions[0].size = $size' \
+             sidestore.json > temp.json
+             
+          # Move the updated file back to sidestore.json
+          mv temp.json sidestore.json
+          
+          # Print after modification to confirm the change
+          cat sidestore.json
+
+      - name: Check for Changes and Commit if Needed
+        run: |
+          # Check if there are changes in sidestore.json
+          if git diff --exit-code sidestore.json; then
+            echo "No changes detected in sidestore.json, skipping commit."
+          else
+            echo "Changes detected, committing..."
+            git config --local user.email "niravraval34@gmail.com"
+            git config --local user.name "Nirav-raval"
+            git add sidestore.json
+            git commit -m "Update downloadURL, version, and size with latest IPA file information"
+            git push
+          fi
