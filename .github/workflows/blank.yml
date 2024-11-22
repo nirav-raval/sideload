@@ -41,53 +41,17 @@ jobs:
           fi
           echo "File Size: $SIZE bytes"
 
-          # Export environment variables
-          echo "ipa_url=${IPA_URL}" >> $GITHUB_ENV
-          echo "version=${VERSION}" >> $GITHUB_ENV
-          echo "size=${SIZE}" >> $GITHUB_ENV
-
-      - name: Checkout Repo
-        uses: actions/checkout@v2
+          # Export environment variables using <<EOF to handle any special characters
+          {
+            echo "ipa_url<<EOF"
+            echo "$IPA_URL"
+            echo "EOF"
+            echo "version=$VERSION"
+            echo "size=$SIZE"
+          } >> $GITHUB_ENV
 
       - name: Verify Extracted Variables
         run: |
           echo "IPA URL: ${{ env.ipa_url }}"
           echo "Version: ${{ env.version }}"
           echo "Size: ${{ env.size }} bytes"
-
-      - name: Update sidestore.json
-        run: |
-          # Print before modification for debugging
-          echo "sidestore.json before update:"
-          cat sidestore.json
-
-          # Update the JSON file
-          jq --arg ipa_url "${{ env.ipa_url }}" \
-             --arg version "${{ env.version }}" \
-             --argjson size "${{ env.size }}" \
-             '.apps[0].downloadURL = $ipa_url | 
-              .apps[0].version = $version | 
-              .apps[0].size = $size |
-              .apps[0].versions[0].downloadURL = $ipa_url |
-              .apps[0].versions[0].version = $version |
-              .apps[0].versions[0].size = $size' \
-             sidestore.json > temp.json
-          mv temp.json sidestore.json
-
-          # Print updated JSON for debugging
-          echo "sidestore.json after update:"
-          cat sidestore.json
-
-      - name: Check for Changes and Commit if Needed
-        run: |
-          # Check for changes
-          if git diff --exit-code sidestore.json; then
-            echo "No changes detected in sidestore.json."
-          else
-            echo "Changes detected, committing and pushing."
-            git config --local user.email "niravraval34@gmail.com"
-            git config --local user.name "Nirav-raval"
-            git add sidestore.json
-            git commit -m "Update sidestore.json with latest IPA details"
-            git push
-          fi
