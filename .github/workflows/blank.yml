@@ -17,28 +17,31 @@ jobs:
           jq -r '.assets[] | select(.name | endswith(".ipa")) | .browser_download_url')
           
           if [ -z "$IPA_URL" ]; then
-            echo "Error: IPA URL not found."
+            echo "Error: IPA file URL not found in the release assets."
             exit 1
           fi
+          echo "Fetched IPA URL: $IPA_URL"
 
-          # Extract version from URL using regex
-          VERSION=$(echo "$IPA_URL" | grep -oP 'EeveeSpotify-\K[\d.]+(?=\.ipa)')
-
+          # Extract version from URL (e.g., "EeveeSpotify-5.8.1-8.9.92.ipa")
+          VERSION=$(echo "$IPA_URL" | grep -oP 'EeveeSpotify-\K[\d.]+(?=-[\d.]+\.ipa)')
+          
           if [ -z "$VERSION" ]; then
-            echo "Error: Version not extracted from URL."
+            echo "Error: Version could not be extracted from the IPA file URL."
             exit 1
           fi
+          echo "Extracted Version: $VERSION"
 
-          # Fetch file size (in bytes) from asset information
+          # Fetch the file size (in bytes)
           SIZE=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
           jq '.assets[] | select(.name | endswith(".ipa")) | .size')
 
           if [ -z "$SIZE" ]; then
-            echo "Error: File size not found."
+            echo "Error: File size not found for the IPA file."
             exit 1
           fi
+          echo "File Size: $SIZE bytes"
 
-          # Export environment variables with proper escaping
+          # Export environment variables
           echo "ipa_url=${IPA_URL}" >> $GITHUB_ENV
           echo "version=${VERSION}" >> $GITHUB_ENV
           echo "size=${SIZE}" >> $GITHUB_ENV
@@ -48,17 +51,17 @@ jobs:
 
       - name: Verify Extracted Variables
         run: |
-          echo "Fetched IPA URL: ${{ env.ipa_url }}"
-          echo "Extracted Version: ${{ env.version }}"
-          echo "File Size: ${{ env.size }} bytes"
+          echo "IPA URL: ${{ env.ipa_url }}"
+          echo "Version: ${{ env.version }}"
+          echo "Size: ${{ env.size }} bytes"
 
       - name: Update sidestore.json
         run: |
           # Print before modification for debugging
-          echo "Before Update:"
-          cat sidestore.json || echo "sidestore.json not found."
+          echo "sidestore.json before update:"
+          cat sidestore.json
 
-          # Update JSON file
+          # Update the JSON file
           jq --arg ipa_url "${{ env.ipa_url }}" \
              --arg version "${{ env.version }}" \
              --argjson size "${{ env.size }}" \
@@ -69,21 +72,19 @@ jobs:
               .apps[0].versions[0].version = $version |
               .apps[0].versions[0].size = $size' \
              sidestore.json > temp.json
-
-          # Replace the original file
           mv temp.json sidestore.json
 
-          # Print updated file for verification
-          echo "After Update:"
+          # Print updated JSON for debugging
+          echo "sidestore.json after update:"
           cat sidestore.json
 
       - name: Check for Changes and Commit if Needed
         run: |
-          # Check for changes in sidestore.json
-          if git diff --quiet sidestore.json; then
-            echo "No changes detected, skipping commit."
+          # Check for changes
+          if git diff --exit-code sidestore.json; then
+            echo "No changes detected in sidestore.json."
           else
-            echo "Changes detected, committing..."
+            echo "Changes detected, committing and pushing."
             git config --local user.email "niravraval34@gmail.com"
             git config --local user.name "Nirav-raval"
             git add sidestore.json
