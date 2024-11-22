@@ -15,15 +15,15 @@ jobs:
           # Fetch the latest IPA URL
           IPA_URL=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
           jq -r '.assets[] | select(.name | endswith(".ipa")) | .browser_download_url')
-          
+
           if [ -z "$IPA_URL" ]; then
             echo "Error: IPA file URL not found in the release assets."
             exit 1
           fi
           echo "Fetched IPA URL: $IPA_URL"
 
-          # Extract version from URL (e.g., "EeveeSpotify-5.8.1-8.9.92.ipa")
-          VERSION=$(echo "$IPA_URL" | grep -oP 'EeveeSpotify-\K[\d.]+(?=-[\d.]+\.ipa)')
+          # Extract version from URL (generalized for any version format)
+          VERSION=$(echo "$IPA_URL" | grep -oP 'EeveeSpotify-\K[^-]+(?=\.ipa)')
           
           if [ -z "$VERSION" ]; then
             echo "Error: Version could not be extracted from the IPA file URL."
@@ -41,7 +41,7 @@ jobs:
           fi
           echo "File Size: $SIZE bytes"
 
-          # Export environment variables using <<EOF to handle any special characters
+          # Sanitize and export environment variables
           {
             echo "ipa_url<<EOF"
             echo "$IPA_URL"
