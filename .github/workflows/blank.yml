@@ -9,31 +9,31 @@ jobs:
   fetch-ipa:
     runs-on: ubuntu-latest
     steps:
-      - name: Get IPA URL, Version, and Size
+      - name: Get First IPA URL, Version, and Size
         id: get_ipa_url
         run: |
-          # Fetch the latest IPA URL
+          # Fetch the first `.ipa` file's URL from the release assets
           IPA_URL=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
-          jq -r '.assets[] | select(.name | endswith(".ipa")) | .browser_download_url')
+          jq -r '.assets[] | select(.name | endswith(".ipa")) | .browser_download_url' | head -n 1)
 
           if [ -z "$IPA_URL" ]; then
-            echo "Error: IPA file URL not found in the release assets."
+            echo "Error: No IPA file URL found in the release assets."
             exit 1
           fi
           echo "Fetched IPA URL: $IPA_URL"
 
-          # Extract version from URL (generalized for any version format)
+          # Extract version from the URL
           VERSION=$(echo "$IPA_URL" | grep -oP 'EeveeSpotify-\K[^-]+(?=\.ipa)')
-          
+
           if [ -z "$VERSION" ]; then
             echo "Error: Version could not be extracted from the IPA file URL."
             exit 1
           fi
           echo "Extracted Version: $VERSION"
 
-          # Fetch the file size (in bytes)
+          # Fetch the file size (in bytes) for the first `.ipa` file
           SIZE=$(curl -s "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest" | 
-          jq '.assets[] | select(.name | endswith(".ipa")) | .size')
+          jq '.assets[] | select(.name | endswith(".ipa")) | .size' | head -n 1)
 
           if [ -z "$SIZE" ]; then
             echo "Error: File size not found for the IPA file."
@@ -41,7 +41,7 @@ jobs:
           fi
           echo "File Size: $SIZE bytes"
 
-          # Sanitize and export environment variables
+          # Export variables
           {
             echo "ipa_url<<EOF"
             echo "$IPA_URL"
