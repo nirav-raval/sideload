@@ -63,7 +63,7 @@ jobs:
              '.apps[0].downloadURL = $ipa_url | 
               .apps[0].version = $version | 
               .apps[0].size = $size |
-              .apps[0].date = $date |
+              .apps[0].versionDate = $date |
               .apps[0].versions[0].downloadURL = $ipa_url |
               .apps[0].versions[0].version = $version |
               .apps[0].versions[0].size = $size |
