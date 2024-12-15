@@ -10,14 +10,14 @@
       "bundleIdentifier": "com.spotify.client",
       "developerName": "whoeevee",
       "subtitle": "A tweak to get Spotify Premium for free, just like Spotilife",
-      "version": "5.8.2-8.9.96",
-      "versionDate": "2024-12-05T14:09:18Z",
+      "version": "5.8.3-9.0.0",
+      "versionDate": "2024-12-12T13:23:21Z",
       "versionDescription": "",
-      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8.2/EeveeSpotify-5.8.2-8.9.96.ipa",
+      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8.3/EeveeSpotify-5.8.3-9.0.0.ipa",
       "localizedDescription": "This app provides access to Spotify iOS app .ipa by fetching IPAs directly from Eevee Spotify. The primary purpose is to add a convenient resource tab in Sidestore, allowing for easy installation and automatic updates.",
       "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0c/1f/61/0c1f6144-af80-f395-3204-1d14fd8b2be7/AppIcon-0-0-1x_U007emarketing-0-6-0-0-85-220.png/512x512bb.jpg",
       "tintColor": "AFEEEE",
-      "size": 83513957,
+      "size": 83510557,
       "permissions": [],
       "screenshotURLs": [
         "https://raw.githubusercontent.com/nirav-raval/sideload/master/sp1.png",
@@ -26,11 +26,11 @@
       "beta": false,
       "versions": [
         {
-          "version": "5.8.2-8.9.96",
-          "date": "2024-12-05T14:09:18Z",
-          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8.2/EeveeSpotify-5.8.2-8.9.96.ipa",
+          "version": "5.8.3-9.0.0",
+          "date": "2024-12-12T13:23:21Z",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.8.3/EeveeSpotify-5.8.3-9.0.0.ipa",
           "localizedDescription": "This is just a tweak to directly update spofity without downloading from EeveeSpotify repo.",
-          "size": 83513957
+          "size": 83510557
         }
       ],
       "appID": "com.whoeevee.EeveeSpotify",
