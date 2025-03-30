@@ -10,14 +10,14 @@
       "bundleIdentifier": "com.spotify.client",
       "developerName": "whoeevee",
       "subtitle": "A tweak to get Spotify Premium for free, just like Spotilife",
-      "version": "5.9-9.0.28%2Bdebug",
-      "versionDate": "2025-03-19T16:02:29Z",
+      "version": "5.9.1-9.0.30",
+      "versionDate": "2025-03-27T19:07:40Z",
       "versionDescription": "",
-      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.9/EeveeSpotify-5.9-9.0.28%2Bdebug.ipa",
+      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.9.1/EeveeSpotify-5.9.1-9.0.30.ipa",
       "localizedDescription": "This app provides access to Spotify iOS app .ipa by fetching IPAs directly from Eevee Spotify. The primary purpose is to add a convenient resource tab in Sidestore, allowing for easy installation and automatic updates.",
       "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0c/1f/61/0c1f6144-af80-f395-3204-1d14fd8b2be7/AppIcon-0-0-1x_U007emarketing-0-6-0-0-85-220.png/512x512bb.jpg",
       "tintColor": "AFEEEE",
-      "size": 85077372,
+      "size": 83562761,
       "permissions": [],
       "screenshotURLs": [
         "https://raw.githubusercontent.com/nirav-raval/sideload/master/sp1.png",
@@ -26,11 +26,11 @@
       "beta": false,
       "versions": [
         {
-          "version": "5.9-9.0.28%2Bdebug",
-          "date": "2025-03-19T16:02:29Z",
-          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.9/EeveeSpotify-5.9-9.0.28%2Bdebug.ipa",
+          "version": "5.9.1-9.0.30",
+          "date": "2025-03-27T19:07:40Z",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.9.1/EeveeSpotify-5.9.1-9.0.30.ipa",
           "localizedDescription": "This is just a tweak to directly update spofity without downloading from EeveeSpotify repo.",
-          "size": 85077372
+          "size": 83562761
         }
       ],
       "appID": "com.whoeevee.EeveeSpotify",
