@@ -10,14 +10,14 @@
       "bundleIdentifier": "com.spotify.client",
       "developerName": "whoeevee",
       "subtitle": "A tweak to get Spotify Premium for free, just like Spotilife",
-      "version": "6.0.1-9.0.56-patched",
-      "versionDate": "2025-06-27T02:29:40Z",
+      "version": "6.0.2-9.0.58-patched",
+      "versionDate": "2025-07-05T21:04:26Z",
       "versionDescription": "",
-      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift6.0.1/EeveeSpotify-6.0.1-9.0.56-patched.ipa",
+      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift6.0.2/EeveeSpotify-6.0.2-9.0.58-patched.ipa",
       "localizedDescription": "This app provides access to Spotify iOS app .ipa by fetching IPAs directly from Eevee Spotify. The primary purpose is to add a convenient resource tab in Sidestore, allowing for easy installation and automatic updates.",
       "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0c/1f/61/0c1f6144-af80-f395-3204-1d14fd8b2be7/AppIcon-0-0-1x_U007emarketing-0-6-0-0-85-220.png/512x512bb.jpg",
       "tintColor": "AFEEEE",
-      "size": 86587225,
+      "size": 86744126,
       "permissions": [],
       "screenshotURLs": [
         "https://raw.githubusercontent.com/nirav-raval/sideload/master/sp1.png",
@@ -26,11 +26,11 @@
       "beta": false,
       "versions": [
         {
-          "version": "6.0.1-9.0.56-patched",
-          "date": "2025-06-27T02:29:40Z",
-          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift6.0.1/EeveeSpotify-6.0.1-9.0.56-patched.ipa",
+          "version": "6.0.2-9.0.58-patched",
+          "date": "2025-07-05T21:04:26Z",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift6.0.2/EeveeSpotify-6.0.2-9.0.58-patched.ipa",
           "localizedDescription": "This is just a tweak to directly update spofity without downloading from EeveeSpotify repo.",
-          "size": 86587225
+          "size": 86744126
         }
       ],
       "appID": "com.whoeevee.EeveeSpotify",
